@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 焦点时底色是强调蓝，文字转白 -->
+    <item android:state_focused="true" android:color="#FFFFFF" />
+    <item android:color="@color/text_primary" />
+</selector>

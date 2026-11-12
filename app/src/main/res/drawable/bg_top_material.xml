@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  顶栏材质。
+  Android 没有 backdrop-filter 做真正的模糊，这里用「深色半透明 + 到底部渐隐为零」
+  模拟一层浮在内容之上的玻璃：内容滚到下面会被压暗、过渡处不出现硬边。
+  两层叠加是为了在纯黑底上也能看出「有一层东西在这」。
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:centerColor="#B3000000"
+                android:endColor="#00000000"
+                android:startColor="#F2000000"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>

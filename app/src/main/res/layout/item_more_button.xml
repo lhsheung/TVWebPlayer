@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 「看更多」：跨整行的一条宽胶囊，比卡片轻，是列表的收尾 -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/moreLabel"
+    style="@style/Text.Body"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="18dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/bg_tile"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:text="看更多"
+    android:textColor="@color/text_secondary"
+    android:textSize="16sp" />

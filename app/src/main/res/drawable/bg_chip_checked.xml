@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 批量选择里的「已勾选」胶囊：靠描边+提亮区分，不额外塞控件 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/radius_chip" />
+            <solid android:color="#3A3A42" />
+            <stroke android:width="3dp" android:color="@color/focus_ring" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/radius_chip" />
+            <solid android:color="#2E3A5C" />
+            <stroke android:width="2dp" android:color="@color/accent" />
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Android TV 桌面用的 banner（320×180）。
+  TV 桌面显示的是 banner 而不是 icon，所以只换 mipmap 在电视上看起来「图标没变」。
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="320dp"
+    android:height="180dp"
+    android:viewportWidth="320"
+    android:viewportHeight="180">
+
+    <!-- 底色：systemBlue → systemTeal -->
+    <path android:pathData="M0,0h320v180h-320z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="0"
+                android:startY="0"
+                android:endX="320"
+                android:endY="180">
+                <item android:offset="0" android:color="#FF0A84FF" />
+                <item android:offset="1" android:color="#FF5AC8FA" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- 电视外框 -->
+    <path
+        android:pathData="M96,56 h72 a12,12 0 0 1 12,12 v40 a12,12 0 0 1 -12,12 h-72 a12,12 0 0 1 -12,-12 v-40 a12,12 0 0 1 12,-12 z"
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="7"
+        android:strokeLineJoin="round" />
+
+    <!-- 播放三角 -->
+    <path
+        android:pathData="M122,70 L152,88 L122,106 Z"
+        android:fillColor="#FFFFFFFF"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="4"
+        android:strokeLineJoin="round" />
+
+    <!-- 右侧三条横线，暗示「列表 / 换台」 -->
+    <path android:pathData="M196,70 h72" android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="9" android:strokeLineCap="round" />
+    <path android:pathData="M196,90 h72" android:strokeColor="#E6FFFFFF"
+        android:strokeWidth="9" android:strokeLineCap="round" />
+    <path android:pathData="M196,110 h48" android:strokeColor="#B3FFFFFF"
+        android:strokeWidth="9" android:strokeLineCap="round" />
+</vector>

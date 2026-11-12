@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>TV 网页播放器 · 界面原型</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #050508;
+    font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px 60px;
+    gap: 28px;
+  }
+  h2.screen-title {
+    font-size: 13px; letter-spacing: 2px; color: #5A5A66;
+    text-transform: uppercase; margin-bottom: -14px; align-self: flex-start;
+    padding-left: calc(50% - 480px);
+  }
+  .tv {
+    width: 960px; height: 540px; background: #0C0C10;
+    border-radius: 14px; overflow: hidden; position: relative;
+    box-shadow: 0 24px 60px rgba(0,0,0,.75), 0 0 0 1px #1E1E26;
+  }
+  /* ---- 站点列表页 ---- */
+  .home { padding: 34px 40px; }
+  .home h1 { font-size: 24px; font-weight: 700; }
+  .home .sub { font-size: 12px; color: #5E5E6A; margin-top: 4px; }
+  .site-list { margin-top: 22px; display: flex; flex-direction: column; gap: 12px; }
+  .site {
+    height: 96px; border-radius: 12px; background: #16161C;
+    border: 1px solid #22222C; display: flex; align-items: center;
+    padding: 0 24px; gap: 18px;
+  }
+  .site.focused { background: #2A3550; border: 2px solid #4C9AFF; }
+  .site .avatar {
+    width: 48px; height: 48px; border-radius: 50%; background: #4C9AFF;
+    color: #0E0E12; font-weight: 700; font-size: 19px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .site .meta .n { font-size: 18px; font-weight: 700; }
+  .site .meta .u { font-size: 12px; color: #7A7A86; margin-top: 3px; }
+
+  /* ---- 浏览页 ---- */
+  .browse { position: absolute; inset: 0; display: flex; flex-direction: column; }
+  .browse .top {
+    padding: 18px 40px 10px; flex: none;
+  }
+  .browse .top .t { font-size: 19px; font-weight: 700; }
+  .browse .top .d { font-size: 11px; color: #66667A; margin-top: 3px; }
+  .rows { flex: 1; overflow: hidden; padding: 8px 0 0 40px; }
+  .row { margin-bottom: 16px; }
+  .row h3 { font-size: 13px; color: #B8B8C4; font-weight: 700; margin-bottom: 8px; }
+  .cards { display: flex; gap: 12px; }
+  .card {
+    width: 118px; height: 162px; border-radius: 10px; overflow: hidden;
+    position: relative; background: #1A1A22; border: 2px solid transparent;
+    flex: none;
+  }
+  .card.focused { border-color: #4C9AFF; box-shadow: 0 0 0 3px rgba(76,154,255,.28); }
+  .card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card .noimg {
+    width: 100%; height: 100%; display: flex; align-items: center;
+    justify-content: center; font-size: 12px; color: #C8C8D4; padding: 8px; text-align: center;
+  }
+  .card .cap {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,.92) 40%);
+    font-size: 10px; padding: 16px 7px 6px; line-height: 1.3;
+  }
+  .chips { display: flex; gap: 8px; }
+  .chip {
+    height: 34px; padding: 0 16px; border-radius: 17px; background: #1E1E26;
+    border: 1px solid #2E2E38; font-size: 12px;
+    display: flex; align-items: center;
+  }
+  .chip.focused { background: #4C9AFF; color: #06101F; font-weight: 700; border-color: #4C9AFF; }
+  .hint {
+    position: absolute; right: 26px; bottom: 12px;
+    font-size: 10px; color: #3E3E4A;
+  }
+  /* ---- 播放页 ---- */
+  .player { position: absolute; inset: 0; background: #000; }
+  .player .video {
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 42%, #1D2A44 0%, #0A0D14 62%, #000 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .player .playbtn {
+    width: 74px; height: 74px; border-radius: 50%;
+    border: 3px solid rgba(255,255,255,.9);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .player .playbtn::after {
+    content: ''; margin-left: 6px;
+    border-left: 22px solid #fff;
+    border-top: 14px solid transparent; border-bottom: 14px solid transparent;
+  }
+  .player .osd {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 26px 16px;
+    background: linear-gradient(transparent, rgba(0,0,0,.9));
+  }
+  .player .bar { height: 4px; background: rgba(255,255,255,.25); border-radius: 2px; margin-bottom: 10px; }
+  .player .bar i { display: block; width: 36%; height: 100%; background: #4C9AFF; border-radius: 2px; }
+  .player .osd .line { display: flex; justify-content: space-between; font-size: 11px; color: #C4C4D0; }
+  .player .cursor {
+    position: absolute; left: 62%; top: 44%;
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 2px solid #fff; box-shadow: 0 0 12px rgba(0,0,0,.9);
+  }
+  .player .cursor::after {
+    content: ''; position: absolute; left: 50%; top: 50%;
+    width: 5px; height: 5px; border-radius: 50%; background: #fff;
+    transform: translate(-50%,-50%);
+  }
+  .note { width: 960px; color: #55555F; font-size: 12px; line-height: 1.7; }
+  .note b { color: #8A8A98; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<h2 class="screen-title">1 · 站点列表</h2>
+<div class="tv">
+  <div class="home">
+    <h1>TV 网页播放器</h1>
+    <div class="sub">按「确认」进入，长按可编辑或删除</div>
+    <div class="site-list">
+      <div class="site">
+        <div class="avatar">★</div>
+        <div class="meta">
+          <div class="n">收藏夹</div>
+          <div class="u">在浏览页长按卡片即可收藏</div>
+        </div>
+      </div>
+      <div class="site focused">
+        <div class="avatar">粤</div>
+        <div class="meta">
+          <div class="n">粤漫之家</div>
+          <div class="u">https://www.ymvid.com</div>
+        </div>
+      </div>
+      <div class="site">
+        <div class="avatar">我</div>
+        <div class="meta">
+          <div class="n">我的站点</div>
+          <div class="u">https://example.com</div>
+        </div>
+      </div>
+      <div class="site">
+        <div class="avatar">＋</div>
+        <div class="meta">
+          <div class="n">添加站点</div>
+          <div class="u">输入任意网址，App 会自动解析成电视界面</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="screen-title">2 · 解析后套入原生界面</h2>
+<div class="tv">
+  <div class="browse">
+    <div class="top">
+      <div class="t">粤漫之家</div>
+      <div class="d">粤语动漫资源站 · 页面结构已解析为原生卡片</div>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <h3>粤语动画更新</h3>
+        <div class="cards">
+          <div class="card focused">
+               <img src="https://static.ymvid.com/public/thumbs/2026/07/274934982764514844.webp" alt="">
+               <div class="cap">超宇宙刑事卡邦 无限 · 全23集</div>
+             </div><div class="card ">
+               <img src="https://static.ymvid.com/public/thumbs/2026/04/243679384765052673.webp" alt="">
+               <div class="cap">我推的孩子 第三季 · 全11集</div>
+             </div><div class="card ">
+               <img src="https://static.ymvid.com/public/thumbs/2026/07/274934982764514841.webp" alt="">
+               <div class="cap">歌姬奏章 皇家少女乐团 · 更新到45集</div>
+             </div><div class="card ">
+               <img src="https://static.ymvid.com/public/thumbs/2025/12/202545692697277474.webp" alt="">
+               <div class="cap">爆旋陀螺X 第三季 · 更新到133集</div>
+             </div>
+        </div>
+      </div>
+      <div class="row">
+        <h3>全部动画</h3>
+        <div class="cards">
+          <div class="card">
+               <img src="https://static.ymvid.com/public/thumbs/2026/10/122818326450942644.webp" alt="">
+               <div class="cap">古典乐★之星</div>
+             </div><div class="card">
+               <img src="https://static.ymvid.com/public/thumbs/2026/10/274935021419220515.webp" alt="">
+               <div class="cap">多啦A梦: 新‧大雄之海底鬼岩城</div>
+             </div><div class="card">
+               <img src="https://static.ymvid.com/public/thumbs/2026/09/274935008534318774.webp" alt="">
+               <div class="cap">幪面超人MY-TH</div>
+             </div><div class="card">
+               <img src="https://static.ymvid.com/public/thumbs/2026/08/274934999944384005.webp" alt="">
+               <div class="cap">反斗奇兵5</div>
+             </div><div class="card">
+               <img src="https://static.ymvid.com/public/thumbs/2026/07/274934991354449494.webp" alt="">
+               <div class="cap">忍者乱太郎：毒菇忍者队最强之军师</div>
+             </div><div class="card">
+               <img src="https://static.ymvid.com/public/thumbs/2026/07/274934987059482300.webp" alt="">
+               <div class="cap">大儒侠史艳文</div>
+             </div>
+        </div>
+      </div>
+      <div class="row">
+        <h3>翻页</h3>
+        <div class="chips">
+          <div class="chip">下一页 →</div>
+        </div>
+      </div>
+    </div>
+    <div class="hint">↑↓ 切换行　←→ 选卡片　长按收藏　菜单键 打开原始网页</div>
+  </div>
+</div>
+
+<h2 class="screen-title">3 · 播放页（站点自己的播放器）</h2>
+<div class="tv">
+  <div class="player">
+    <div class="video">
+      <div class="playbtn"></div>
+    </div>
+    <div class="cursor"></div>
+    <div class="osd">
+      <div class="bar"><i></i></div>
+      <div class="line">
+        <span>超人狄奥 · 第 1 集</span>
+        <span>12:34 / 24:00</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="note">
+  <b>说明：</b>界面用真实抓取的标题与封面渲染。解析器不认站点、只认 DOM 结构
+  （父节点下有 ≥3 个同构子节点、每个含链接、多数带图），所以换任何列表型网站都能出卡片。
+  识别不到列表时自动退回"全页链接"兜底，并可用菜单键直接打开原始网页。
+</div>
+
+</body>
+</html>

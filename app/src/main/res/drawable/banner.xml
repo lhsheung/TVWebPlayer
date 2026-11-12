@@ -1,0 +1,40 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="320dp"
+    android:height="180dp"
+    android:viewportWidth="320"
+    android:viewportHeight="180">
+
+    <path
+        android:pathData="M0,0h320v180h-320z"
+        android:fillColor="#0E0E12" />
+
+    <!-- 电视屏幕轮廓 -->
+    <path
+        android:pathData="M62,52 L150,52 A5,5 0 0 1 155,57 L155,113 A5,5 0 0 1 150,118 L62,118 A5,5 0 0 1 57,113 L57,57 A5,5 0 0 1 62,52 Z"
+        android:strokeColor="#4C9AFF"
+        android:strokeWidth="4"
+        android:fillColor="#00000000" />
+
+    <path
+        android:pathData="M94,72 L94,98 L116,85 Z"
+        android:fillColor="#4C9AFF" />
+
+    <path
+        android:pathData="M78,126 L134,126"
+        android:strokeColor="#4C9AFF"
+        android:strokeWidth="4"
+        android:strokeLineCap="round" />
+
+    <path
+        android:pathData="M178,78 L296,78"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="9"
+        android:strokeLineCap="round" />
+
+    <path
+        android:pathData="M178,104 L262,104"
+        android:strokeColor="#6A6A78"
+        android:strokeWidth="9"
+        android:strokeLineCap="round" />
+
+</vector>

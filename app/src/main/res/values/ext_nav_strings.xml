@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ext 模块在 blbl 侧边栏的入口 -->
+    <string name="ext_nav_title">扩展</string>
+    <string name="ext_hub_title">扩展功能</string>
+    <string name="ext_hub_desc">粤漫之家站点、播放列表、局域网传片、收藏夹</string>
+    <string name="ext_entry_yue">粤漫之家</string>
+    <string name="ext_entry_playlist">播放列表</string>
+    <string name="ext_entry_fav">收藏夹</string>
+    <string name="ext_entry_lan">局域网传片</string>
+</resources>

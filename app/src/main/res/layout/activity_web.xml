@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <!-- 真实网页：站点的搜索、分类、登录、设置和播放器都在这里原样工作 -->
+    <WebView
+        android:id="@+id/web"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <!-- 指针模式备用：Canvas / 自定义控件够不着时用 -->
+    <com.tvblplayer.ext.ui.CursorView
+        android:id="@+id/cursor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!--
+      网页视频全屏容器：站点播放器调用 requestFullscreen / HTML5 video 全屏时，
+      Chromium 把 Surface 交给我们挂在这里。没有它，全屏就只剩一片黑。
+    -->
+    <FrameLayout
+        android:id="@+id/videoStage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:visibility="gone" />
+
+    <!--
+      加载失败面板：WebView 加载出错时原本只剩纯黑，用户分不清是卡了还是网断了。
+      这里给出可读原因 + 重试 + 换版式三条出路。
+    -->
+    <LinearLayout
+        android:id="@+id/errorPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F2000000"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingStart="120dp"
+        android:paddingEnd="120dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvErrTitle"
+            style="@style/Text.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="网页没能打开"
+            android:textColor="@color/text_primary" />
+
+        <TextView
+            android:id="@+id/tvErrDetail"
+            style="@style/Text.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:textColor="@color/text_secondary" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnErrRetry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bg_toolbar_btn"
+                android:focusable="true"
+                android:minWidth="150dp"
+                android:text="重试"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnErrDesktop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bg_toolbar_btn"
+                android:focusable="true"
+                android:minWidth="150dp"
+                android:text="桌面版打开"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btnErrBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_toolbar_btn"
+                android:focusable="true"
+                android:minWidth="150dp"
+                android:text="返回站点列表"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--
+      工具条：菜单键唤出。
+      只保留「真的会用」的四项：缩放、版式、指针、刷新。
+      原来的「首页」「整理视图」被删掉了——首页按返回键就能回，整理视图在
+      站点列表长按也能进，放在网页工具条里只会多两个要跨过去才能到目标的按钮（D-011）。
+    -->
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="#E6101012"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="36dp"
+        android:paddingTop="18dp"
+        android:paddingEnd="36dp"
+        android:paddingBottom="18dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/Text.SectionHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_primary" />
+
+        <Button
+            android:id="@+id/btnFullscreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_toolbar_btn"
+            android:focusable="true"
+            android:text="全屏"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnUa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_toolbar_btn"
+            android:focusable="true"
+            android:text="桌面版"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnZoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_toolbar_btn"
+            android:focusable="true"
+            android:text="缩放 100%"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnCursor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_toolbar_btn"
+            android:focusable="true"
+            android:text="指针模式"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_toolbar_btn"
+            android:focusable="true"
+            android:text="刷新"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- 底部状态条：只在刚进入 / 切换模式时短暂出现 -->
+    <TextView
+        android:id="@+id/tvStatus"
+        style="@style/Text.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="16dp"
+        android:background="#B3101012"
+        android:paddingStart="12dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="6dp"
+        android:textColor="@color/text_secondary" />
+
+    <!--
+      遥控器键盘已删除：改用系统输入法（点击输入框时由 Chromium / IME 负责）。
+      自绘面板会遮挡页面，且写值不触发 input 事件，登录表单读不到内容。
+    -->
+</FrameLayout>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <!--
+      干活用的 WebView：必须全屏真实排版，否则 JS 的 getBoundingClientRect 全是 0，
+      解析规则会失效。用 alpha=0 盖在底层。
+    -->
+    <WebView
+        android:id="@+id/worker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg">
+
+        <!-- 行内容：底部留出呼吸空间 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rows"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingTop="116dp"
+            android:paddingBottom="20dp" />
+
+        <!--
+          顶部标题：只在列表顶端出现，往下滑就整体收起。
+          用实色底而不是半透明渐变——半透明在滚动时会把后面的海报透出来，
+          看起来像"标题一直压在画面上"。
+          网站自述（page.intro）在 TV 上是纯噪音，不显示。
+        -->
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/screen_margin"
+            android:paddingTop="34dp"
+            android:paddingEnd="@dimen/screen_margin"
+            android:paddingBottom="26dp">
+
+            <TextView
+                android:id="@+id/pageTitle"
+                style="@style/Text.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:indeterminateTint="@color/text_secondary" />
+
+            <TextView
+                android:id="@+id/loadingText"
+                style="@style/Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="正在读取页面…"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/statePanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingStart="110dp"
+            android:paddingEnd="110dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/stateTitle"
+                style="@style/Text.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/stateDetail"
+                style="@style/Text.Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/stateHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="按「确认」重试　按「返回」退出"
+                android:textColor="@color/accent"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/scrollHint"
+            style="@style/Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:layout_marginBottom="14dp"
+            android:text="长按收藏 · 菜单键打开原始网页"
+            android:textSize="11sp" />
+    </FrameLayout>
+
+</FrameLayout>

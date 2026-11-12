@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 10-foot UI 的间距节奏。以 8dp 为基准，边缘留足安全区 -->
+    <dimen name="screen_margin">56dp</dimen>
+    <dimen name="gutter">16dp</dimen>
+    <dimen name="row_gap">28dp</dimen>
+
+    <dimen name="radius_card">18dp</dimen>
+    <dimen name="radius_row">16dp</dimen>
+    <dimen name="radius_chip">999dp</dimen>
+
+    <!-- 海报卡：16:22 比例，电视上比网页缩略图更有存在感 -->
+    <dimen name="poster_w">208dp</dimen>
+    <dimen name="poster_h">300dp</dimen>
+
+    <dimen name="site_row_h">92dp</dimen>
+    <dimen name="chip_h">54dp</dimen>
+
+    <!--
+      B 站视频卡：16:9 横图。
+      320dp 宽在 1080p 电视上一行能放 4~5 张，既有信息量又不至于把标题挤成两行一个字。
+    -->
+    <dimen name="bili_card_w">320dp</dimen>
+    <dimen name="bili_card_h">180dp</dimen>
+
+    <!-- 焦点放大：1.0 → 1.07，够明显但不挤邻居 -->
+    <item name="focus_scale" format="float" type="dimen">1.07</item>
+</resources>

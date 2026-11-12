@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/radius_chip" />
+            <!-- 浅色主题下用强调蓝做焦点底；不能再拿 text_primary（近黑）当底色，
+                 否则和浅色主题的黑字撞在一起，整块糊掉 -->
+            <solid android:color="@color/accent" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/radius_chip" />
+            <solid android:color="@color/surface" />
+            <stroke android:width="1dp" android:color="@color/surface_stroke" />
+        </shape>
+    </item>
+</selector>

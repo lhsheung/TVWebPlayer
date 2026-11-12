@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  自适应图标前景：一台电视 + 播放三角。
+  108×108 画布，内容全部落在中心 66×66 安全区内（自适应图标各厂商裁切都能保住）。
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- 电视外框：圆角矩形描边 -->
+    <path
+        android:pathData="M34,34 h40 a8,8 0 0 1 8,8 v24 a8,8 0 0 1 -8,8 h-40 a8,8 0 0 1 -8,-8 v-24 a8,8 0 0 1 8,-8 z"
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- 播放三角 -->
+    <path
+        android:pathData="M48,46 L62,54 L48,62 Z"
+        android:fillColor="#FFFFFFFF"
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="3"
+        android:strokeLineJoin="round" />
+</vector>

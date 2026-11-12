@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  功能入口磁贴（收藏夹 / 播放列表 / 局域网 / 站点）。
+  比视频卡矮、比它暗一档：这些是「去哪」，不是「看什么」，不该抢内容的注意力。
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scRoot"
+    android:layout_width="match_parent"
+    android:layout_height="112dp"
+    android:layout_margin="6dp"
+    android:background="@drawable/bg_tile"
+    android:clipToOutline="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="20dp"
+    android:paddingEnd="18dp">
+
+    <TextView
+        android:id="@+id/scGlyph"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/bg_initial"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="19sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/scName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:letterSpacing="-0.01" />
+
+        <TextView
+            android:id="@+id/scDetail"
+            style="@style/Text.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="13sp" />
+    </LinearLayout>
+</LinearLayout>

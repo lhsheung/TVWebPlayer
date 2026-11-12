@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      默认配色：Apple iOS 浅色系统色。
+      背景用 systemGroupedBackground，卡片用纯白，文字用 label / secondaryLabel，
+      强调色 systemBlue。电视上浅底比纯黑省眼，字号也不用为了压黑底而加粗。
+    -->
+    <color name="bg">#F2F2F7</color>
+    <color name="bg_elevated">#FFFFFF</color>
+
+    <!-- 材质：白卡片 + 浅灰描边，靠描边和留白分层 -->
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_focused">#E8EEF9</color>
+    <color name="surface_stroke">#D1D1D6</color>
+
+    <!-- 文字：Apple label / secondaryLabel / systemGray -->
+    <color name="text_primary">#1D1D1F</color>
+    <color name="text_secondary">#6E6E73</color>
+    <color name="text_tertiary">#8E8E93</color>
+
+    <!-- 强调色：systemBlue（浅色外观） -->
+    <color name="accent">#007AFF</color>
+
+    <!-- 焦点环：浅底上白环看不见，改用强调蓝 -->
+    <color name="focus_ring">#007AFF</color>
+
+    <!-- 视频页专用：播放器周围保持纯黑，避免浅色底在暗房里晃眼、也别闪白 -->
+    <color name="bg_video">#000000</color>
+</resources>

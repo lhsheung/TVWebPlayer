@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 侧边栏线性图标：24dp 网格 / 1.8dp 描边 / 圆角端点，浅色底上用深色描边 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24">
+    <path
+        android:pathData="M12,4 a4,4 0 1 0 0,8 a4,4 0 1 0 0,-8 z M5,20 c0,-3.9 3.1,-6 7,-6 s7,2.1 7,6"
+        android:fillColor="#00000000"
+        android:strokeColor="#FF1D1D1F"
+        android:strokeWidth="1.8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

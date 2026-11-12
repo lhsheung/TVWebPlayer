@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ext 模块主题：与 blbl 的 Theme.Blbl 完全隔离，互不影响。
+         浅色外观，所以父主题必须用 Light 版，否则 AlertDialog / 菜单还是深色。 -->
+    <style name="Theme.Ext.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/bg</item>
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- 焦点反馈由 FocusMotion 接管，关掉系统的默认高亮方块 -->
+        <item name="android:defaultFocusHighlightEnabled">false</item>
+    </style>
+
+    <style name="Theme.Ext.Fullscreen" parent="Theme.Ext.Base">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 播放 / 网页这类整屏内容保持纯黑底：暗房里不晃眼，也不会闪一下白 -->
+        <item name="android:windowBackground">@color/bg_video</item>
+    </style>
+</resources>

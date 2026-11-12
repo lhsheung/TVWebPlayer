@@ -1,0 +1,26 @@
+# 构建产物
+build/
+app/build/
+.gradle/
+.kotlin/
+captures/
+.externalNativeBuild/
+.cxx/
+*.iml
+.idea/
+
+# 本机配置（SDK 路径）
+local.properties
+
+# 验证 / 调试产物（截图、构建日志、抓包脚本）
+_verify/
+
+# 安装包走 GitHub Releases，不进 git 历史
+dist/*.apk
+
+# 设计验证的原始截图（体积大，正文在 docs/*.md）
+docs/*-evidence/
+
+# 系统文件
+.DS_Store
+Thumbs.db

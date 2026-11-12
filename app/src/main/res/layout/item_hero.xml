@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Hero 位：首屏最大的一张推荐卡。
+  Apple TV 首页第一屏就是一张几乎满宽的大图 —— 它回答「现在看什么」这个问题，
+  下面的网格回答「还有什么」。层级靠尺寸差而不是靠花哨装饰。
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/heroRoot"
+    android:layout_width="match_parent"
+    android:layout_height="340dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="18dp"
+    android:background="@drawable/bg_card"
+    android:clipToOutline="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:foreground="@drawable/fg_focus_ring">
+
+    <ImageView
+        android:id="@+id/heroCover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#141418"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop" />
+
+    <!-- 底部压暗，让文字永远可读（这也是 Apple 的 scrim 做法） -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/scrim_bottom" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:paddingBottom="26dp">
+
+        <TextView
+            android:id="@+id/heroBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_duration"
+            android:paddingStart="9dp"
+            android:paddingTop="3dp"
+            android:paddingEnd="9dp"
+            android:paddingBottom="3dp"
+            android:text="稍后看"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/heroTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:shadowColor="#99000000"
+            android:shadowDy="2"
+            android:shadowRadius="8"
+            android:textColor="#FFFFFF"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:letterSpacing="-0.014" />
+
+        <TextView
+            android:id="@+id/heroMeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#D9FFFFFF"
+            android:textSize="15sp" />
+    </LinearLayout>
+</FrameLayout>

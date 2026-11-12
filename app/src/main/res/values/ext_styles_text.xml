@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      排版：字号越大字距越紧，正文接近 0。
+      这是 Apple 的 tracking 规则，固定 letterSpacing 一定有一处是错的。
+    -->
+    <style name="Text.Display" parent="">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.022</item>
+        <item name="android:lineSpacingMultiplier">1.05</item>
+    </style>
+
+    <style name="Text.Title" parent="">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.015</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+    </style>
+
+    <style name="Text.SectionHeader" parent="">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">-0.008</item>
+    </style>
+
+    <style name="Text.Body" parent="">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:lineSpacingMultiplier">1.35</item>
+    </style>
+
+    <!--
+      说明文字：TV 是远距离观看，13sp / 36% 白在 1080p 上等于看不见。
+      提到 15sp + text_secondary，牺牲一点"层级感"换可读性（D-011）。
+    -->
+    <style name="Text.Caption" parent="">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:letterSpacing">0.005</item>
+    </style>
+</resources>
